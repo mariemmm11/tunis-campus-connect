@@ -227,6 +227,89 @@ export type Database = {
           },
         ]
       }
+      offers: {
+        Row: {
+          company_name: string | null
+          contact_email: string | null
+          contact_phone: string | null
+          contract_type: Database["public"]["Enums"]["contract_type"] | null
+          created_at: string
+          deadline: string | null
+          description: string
+          duration: string | null
+          furnished: boolean | null
+          housing_type: Database["public"]["Enums"]["housing_type"] | null
+          id: string
+          is_active: boolean | null
+          location: string
+          posted_by: string | null
+          rent_price: number | null
+          requirements: string | null
+          salary_range: string | null
+          sector_id: string | null
+          surface_area: number | null
+          title: string
+          type: Database["public"]["Enums"]["offer_type"]
+          updated_at: string
+        }
+        Insert: {
+          company_name?: string | null
+          contact_email?: string | null
+          contact_phone?: string | null
+          contract_type?: Database["public"]["Enums"]["contract_type"] | null
+          created_at?: string
+          deadline?: string | null
+          description: string
+          duration?: string | null
+          furnished?: boolean | null
+          housing_type?: Database["public"]["Enums"]["housing_type"] | null
+          id?: string
+          is_active?: boolean | null
+          location: string
+          posted_by?: string | null
+          rent_price?: number | null
+          requirements?: string | null
+          salary_range?: string | null
+          sector_id?: string | null
+          surface_area?: number | null
+          title: string
+          type: Database["public"]["Enums"]["offer_type"]
+          updated_at?: string
+        }
+        Update: {
+          company_name?: string | null
+          contact_email?: string | null
+          contact_phone?: string | null
+          contract_type?: Database["public"]["Enums"]["contract_type"] | null
+          created_at?: string
+          deadline?: string | null
+          description?: string
+          duration?: string | null
+          furnished?: boolean | null
+          housing_type?: Database["public"]["Enums"]["housing_type"] | null
+          id?: string
+          is_active?: boolean | null
+          location?: string
+          posted_by?: string | null
+          rent_price?: number | null
+          requirements?: string | null
+          salary_range?: string | null
+          sector_id?: string | null
+          surface_area?: number | null
+          title?: string
+          type?: Database["public"]["Enums"]["offer_type"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "offers_sector_id_fkey"
+            columns: ["sector_id"]
+            isOneToOne: false
+            referencedRelation: "sectors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           created_at: string
@@ -371,6 +454,13 @@ export type Database = {
     }
     Enums: {
       application_status: "en_cours" | "accepte" | "refuse" | "en_attente"
+      contract_type:
+        | "cdi"
+        | "cdd"
+        | "stage"
+        | "freelance"
+        | "temps_partiel"
+        | "temps_plein"
       education_level:
         | "bac"
         | "licence"
@@ -378,6 +468,13 @@ export type Database = {
         | "doctorat"
         | "formation_pro"
       event_type: "jpo" | "salon" | "conference" | "atelier"
+      housing_type:
+        | "appartement"
+        | "studio"
+        | "chambre"
+        | "colocation"
+        | "residence"
+      offer_type: "stage" | "job" | "logement"
       test_type:
         | "orientation_metiers"
         | "personnalite"
@@ -511,6 +608,14 @@ export const Constants = {
   public: {
     Enums: {
       application_status: ["en_cours", "accepte", "refuse", "en_attente"],
+      contract_type: [
+        "cdi",
+        "cdd",
+        "stage",
+        "freelance",
+        "temps_partiel",
+        "temps_plein",
+      ],
       education_level: [
         "bac",
         "licence",
@@ -519,6 +624,14 @@ export const Constants = {
         "formation_pro",
       ],
       event_type: ["jpo", "salon", "conference", "atelier"],
+      housing_type: [
+        "appartement",
+        "studio",
+        "chambre",
+        "colocation",
+        "residence",
+      ],
+      offer_type: ["stage", "job", "logement"],
       test_type: [
         "orientation_metiers",
         "personnalite",
