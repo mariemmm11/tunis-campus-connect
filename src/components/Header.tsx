@@ -1,10 +1,19 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, User, Search } from "lucide-react";
+import { Menu, X, User, Search, LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   const navigation = [
     { name: "Accueil", href: "/" },
@@ -45,10 +54,41 @@ const Header = () => {
             <Button variant="ghost" size="sm">
               <Search className="w-4 h-4" />
             </Button>
-            <Button variant="outline" size="sm">
-              <User className="w-4 h-4 mr-2" />
-              Connexion
-            </Button>
+            
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="sm" className="gap-2">
+                    <User className="w-4 h-4" />
+                    Mon compte
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem>
+                    <User className="w-4 h-4 mr-2" />
+                    Mon profil
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/dashboard">Tableau de bord</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    Mes favoris
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={signOut}>
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Déconnexion
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button variant="outline" size="sm" asChild>
+                <Link to="/auth">
+                  <User className="w-4 h-4 mr-2" />
+                  Connexion
+                </Link>
+              </Button>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -75,10 +115,25 @@ const Header = () => {
                 </Link>
               ))}
               <div className="flex flex-col space-y-2 pt-4 border-t border-border">
-                <Button variant="outline" size="sm">
-                  <User className="w-4 h-4 mr-2" />
-                  Connexion
-                </Button>
+                {user ? (
+                  <>
+                    <Button variant="outline" size="sm">
+                      <User className="w-4 h-4 mr-2" />
+                      Mon profil
+                    </Button>
+                    <Button variant="ghost" size="sm" onClick={signOut}>
+                      <LogOut className="w-4 h-4 mr-2" />
+                      Déconnexion
+                    </Button>
+                  </>
+                ) : (
+                  <Button variant="outline" size="sm" asChild>
+                    <Link to="/auth">
+                      <User className="w-4 h-4 mr-2" />
+                      Connexion
+                    </Link>
+                  </Button>
+                )}
               </div>
             </nav>
           </div>
