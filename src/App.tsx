@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import Layout from "./layouts/Layout";
 import Index from "./pages/Index";
 import Careers from "./pages/Careers";
@@ -19,8 +20,9 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <AuthProvider>
+    <ThemeProvider defaultTheme="system" storageKey="tuniscampus-ui-theme">
+      <TooltipProvider>
+        <AuthProvider>
         <Toaster />
         <Sonner />
         <BrowserRouter>
@@ -43,8 +45,9 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-      </AuthProvider>
-    </TooltipProvider>
+        </AuthProvider>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 

@@ -25,25 +25,26 @@ const Events = () => {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary via-primary-glow to-secondary overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-subtle opacity-40" />
-        <div className="relative container mx-auto px-4 py-20">
+      {/* Hero Section Premium */}
+      <section className="relative bg-gradient-hero overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-subtle opacity-60" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_70%)]" />
+        <div className="relative container mx-auto px-4 py-24">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 animate-fade-in">
+            <h1 className="text-5xl md:text-7xl font-cal font-bold text-white mb-8 animate-fade-in">
               Événements Étudiants
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 animate-fade-in">
+            <p className="text-xl md:text-2xl text-white/90 mb-12 animate-fade-in font-medium leading-relaxed">
               Découvrez les salons, journées portes ouvertes et conférences en Tunisie
             </p>
-            <div className="flex flex-wrap justify-center gap-4 text-white/80">
-              <span className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+            <div className="flex flex-wrap justify-center gap-6 text-white/80">
+              <span className="bg-white/10 backdrop-blur-lg px-6 py-3 rounded-2xl border border-white/20 hover:bg-white/20 transition-smooth animate-float">
                 🎪 Salons étudiants
               </span>
-              <span className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+              <span className="bg-white/10 backdrop-blur-lg px-6 py-3 rounded-2xl border border-white/20 hover:bg-white/20 transition-smooth animate-float" style={{animationDelay: '1s'}}>
                 🚪 Journées portes ouvertes
               </span>
-              <span className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+              <span className="bg-white/10 backdrop-blur-lg px-6 py-3 rounded-2xl border border-white/20 hover:bg-white/20 transition-smooth animate-float" style={{animationDelay: '2s'}}>
                 🎤 Conférences
               </span>
             </div>
@@ -51,26 +52,26 @@ const Events = () => {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-12">
-        {/* Section Navigation */}
+      <div className="container mx-auto px-4 py-16">
+        {/* Navigation Premium */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <div className="flex justify-center mb-12">
-            <TabsList className="bg-card shadow-elegant p-1 rounded-xl">
+          <div className="flex justify-center mb-16">
+            <TabsList className="bg-card/60 backdrop-blur-xl shadow-premium p-2 rounded-2xl border border-border/50">
               <TabsTrigger 
                 value="salon" 
-                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all duration-300 rounded-lg px-6 py-3"
+                className="data-[state=active]:bg-gradient-primary data-[state=active]:text-white data-[state=active]:shadow-elegant transition-spring rounded-xl px-8 py-4 font-medium"
               >
                 Salons
               </TabsTrigger>
               <TabsTrigger 
                 value="jpo" 
-                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all duration-300 rounded-lg px-6 py-3"
+                className="data-[state=active]:bg-gradient-primary data-[state=active]:text-white data-[state=active]:shadow-elegant transition-spring rounded-xl px-8 py-4 font-medium"
               >
                 Journées Portes Ouvertes
               </TabsTrigger>
               <TabsTrigger 
                 value="conference" 
-                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all duration-300 rounded-lg px-6 py-3"
+                className="data-[state=active]:bg-gradient-primary data-[state=active]:text-white data-[state=active]:shadow-elegant transition-spring rounded-xl px-8 py-4 font-medium"
               >
                 Conférences
               </TabsTrigger>
