@@ -24,7 +24,7 @@ const Events = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary via-primary-glow to-secondary overflow-hidden">
         <div className="absolute inset-0 bg-gradient-subtle opacity-40" />
@@ -117,7 +117,7 @@ const Events = () => {
         isOpen={!!selectedEventId}
         onClose={() => setSelectedEventId(null)}
       />
-    </div>
+    </>
   );
 };
 
