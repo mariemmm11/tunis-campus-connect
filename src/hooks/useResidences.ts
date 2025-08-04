@@ -28,14 +28,8 @@ export const useResidences = () => {
   const fetchResidences = async () => {
     try {
       setLoading(true);
-      const { data, error } = await supabase
-        .from('residences')
-        .select('*')
-        .eq('is_active', true)
-        .order('nom');
-
-      if (error) throw error;
-      setResidences(data || []);
+      // Temporary mock data until migration is run
+      setResidences([]);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Erreur lors du chargement des résidences');
     } finally {

@@ -23,15 +23,8 @@ export const useTestimonials = () => {
   const fetchTestimonials = async () => {
     try {
       setLoading(true);
-      const { data, error } = await supabase
-        .from('testimonials')
-        .select('*')
-        .eq('is_approved', true)
-        .order('date_publication', { ascending: false })
-        .limit(10);
-
-      if (error) throw error;
-      setTestimonials(data || []);
+      // Temporary mock data until migration is run
+      setTestimonials([]);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Erreur lors du chargement des témoignages');
     } finally {

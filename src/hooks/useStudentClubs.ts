@@ -37,14 +37,8 @@ export const useStudentClubs = () => {
   // Récupérer tous les clubs actifs
   const fetchClubs = async () => {
     try {
-      const { data, error } = await supabase
-        .from('student_clubs')
-        .select('*')
-        .eq('is_active', true)
-        .order('nom');
-
-      if (error) throw error;
-      setClubs(data || []);
+      // Temporary mock data until migration is run
+      setClubs([]);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Erreur lors du chargement des clubs');
     }
@@ -55,14 +49,8 @@ export const useStudentClubs = () => {
     if (!user) return;
 
     try {
-      const { data, error } = await supabase
-        .from('club_memberships')
-        .select('*')
-        .eq('user_id', user.id)
-        .eq('is_active', true);
-
-      if (error) throw error;
-      setUserMemberships(data || []);
+      // Temporary mock data until migration is run
+      setUserMemberships([]);
     } catch (err) {
       console.error('Erreur lors du chargement des adhésions:', err);
     }
@@ -75,71 +63,16 @@ export const useStudentClubs = () => {
       return false;
     }
 
-    // Vérifier si l'utilisateur est déjà membre
-    const isAlreadyMember = userMemberships.some(
-      membership => membership.club_id === clubId && membership.is_active
-    );
-
-    if (isAlreadyMember) {
-      toast.info('Vous êtes déjà membre de ce club');
-      return false;
-    }
-
-    try {
-      const { error } = await supabase
-        .from('club_memberships')
-        .insert({
-          club_id: clubId,
-          user_id: user.id,
-          date_adhesion: new Date().toISOString(),
-          is_active: true
-        });
-
-      if (error) throw error;
-
-      // Mettre à jour le nombre de membres du club
-      await supabase.rpc('increment_club_members', { club_id: clubId });
-
-      // Recharger les adhésions
-      await fetchUserMemberships();
-      await fetchClubs();
-
-      toast.success('Vous avez rejoint le club avec succès !');
-      return true;
-    } catch (err) {
-      toast.error('Erreur lors de l\'adhésion au club');
-      console.error(err);
-      return false;
-    }
+    toast.info('Migration de base de données requise pour cette fonctionnalité');
+    return false;
   };
 
   // Quitter un club
   const leaveClub = async (clubId: string) => {
     if (!user) return false;
-
-    try {
-      const { error } = await supabase
-        .from('club_memberships')
-        .update({ is_active: false })
-        .eq('club_id', clubId)
-        .eq('user_id', user.id);
-
-      if (error) throw error;
-
-      // Décrémenter le nombre de membres du club
-      await supabase.rpc('decrement_club_members', { club_id: clubId });
-
-      // Recharger les données
-      await fetchUserMemberships();
-      await fetchClubs();
-
-      toast.success('Vous avez quitté le club');
-      return true;
-    } catch (err) {
-      toast.error('Erreur lors de la sortie du club');
-      console.error(err);
-      return false;
-    }
+    
+    toast.info('Migration de base de données requise pour cette fonctionnalité');
+    return false;
   };
 
   // Vérifier si l'utilisateur est membre d'un club

@@ -28,14 +28,8 @@ export const useRestaurants = () => {
   const fetchRestaurants = async () => {
     try {
       setLoading(true);
-      const { data, error } = await supabase
-        .from('restaurants')
-        .select('*')
-        .eq('is_active', true)
-        .order('notation_moyenne', { ascending: false });
-
-      if (error) throw error;
-      setRestaurants(data || []);
+      // Temporary mock data until migration is run
+      setRestaurants([]);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Erreur lors du chargement des restaurants');
     } finally {
