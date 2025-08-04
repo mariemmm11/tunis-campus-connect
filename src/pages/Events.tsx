@@ -25,39 +25,57 @@ const Events = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-12">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-4">Événements Étudiants</h1>
-          <p className="text-lg opacity-90">
-            Découvrez les salons, journées portes ouvertes et conférences en Tunisie
-          </p>
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-primary via-primary-glow to-secondary overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-subtle opacity-40" />
+        <div className="relative container mx-auto px-4 py-20">
+          <div className="text-center max-w-4xl mx-auto">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 animate-fade-in">
+              Événements Étudiants
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 mb-8 animate-fade-in">
+              Découvrez les salons, journées portes ouvertes et conférences en Tunisie
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 text-white/80">
+              <span className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+                🎪 Salons étudiants
+              </span>
+              <span className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+                🚪 Journées portes ouvertes
+              </span>
+              <span className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+                🎤 Conférences
+              </span>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div className="container mx-auto px-4 py-8">
-        {/* Tabs Navigation */}
+      <div className="container mx-auto px-4 py-12">
+        {/* Section Navigation */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8">
-            <TabsTrigger 
-              value="salon" 
-              className="data-[state=active]:bg-orange-500 data-[state=active]:text-white"
-            >
-              Salons
-            </TabsTrigger>
-            <TabsTrigger 
-              value="jpo" 
-              className="data-[state=active]:bg-teal-500 data-[state=active]:text-white"
-            >
-              Journées Portes Ouvertes
-            </TabsTrigger>
-            <TabsTrigger 
-              value="conference" 
-              className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white"
-            >
-              Conférences
-            </TabsTrigger>
-          </TabsList>
+          <div className="flex justify-center mb-12">
+            <TabsList className="bg-card shadow-elegant p-1 rounded-xl">
+              <TabsTrigger 
+                value="salon" 
+                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all duration-300 rounded-lg px-6 py-3"
+              >
+                Salons
+              </TabsTrigger>
+              <TabsTrigger 
+                value="jpo" 
+                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all duration-300 rounded-lg px-6 py-3"
+              >
+                Journées Portes Ouvertes
+              </TabsTrigger>
+              <TabsTrigger 
+                value="conference" 
+                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all duration-300 rounded-lg px-6 py-3"
+              >
+                Conférences
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
           {/* Filter Bar */}
           <EventFilterBar 
