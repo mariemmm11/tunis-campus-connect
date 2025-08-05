@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Layout from "./layouts/Layout";
 import Index from "./pages/Index";
 import Careers from "./pages/Careers";
+import SectorDetail from "./pages/SectorDetail";
 import Tests from "./pages/Tests";
 import Offers from "./pages/Offers";
 import Events from "./pages/Events";
@@ -31,6 +32,8 @@ const App = () => (
             <Route path="/" element={<Layout />}>
               <Route index element={<Index />} />
               <Route path="careers" element={<Careers />} />
+              <Route path="metiers-et-formations" element={<Careers />} />
+              <Route path="metiers-et-formations/secteur/:sectorId" element={<SectorDetail />} />
               <Route path="tests" element={<Tests />} />
               <Route path="offers" element={<Offers />} />
               <Route path="events" element={<Events />} />

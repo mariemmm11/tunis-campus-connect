@@ -18,7 +18,7 @@ const Header = () => {
 
   const navigation = [
     { name: "Accueil", href: "/" },
-    { name: "Métiers & Formations", href: "/careers" },
+    { name: "Métiers & Formations", href: "/metiers-et-formations" },
     { name: "Tests d'orientation", href: "/tests" },
     { name: "Offres", href: "/offers" },
     { name: "Vie étudiante", href: "/student-life" },
